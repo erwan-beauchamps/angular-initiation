@@ -15,12 +15,13 @@ export class FirstComponentComponent implements OnInit {
 
   public isShowed: boolean = false;
   public switchList = SwitchList;
-  public list: string[] = ["First Element", "Second Element", "Third Element"];
+  public list: string[] = [];
   public switchValue: string = SwitchList.FIRST;
 
   constructor(private simpleService: SimpleServiceService) { }
 
   ngOnInit(): void {
+    this.list = this.simpleService.getList();
   }
 
   display(): void {
@@ -29,6 +30,14 @@ export class FirstComponentComponent implements OnInit {
 
   changeSwitchValue(newValue: string): void {
     this.switchValue = newValue;
+  }
+
+  add(): void {
+    this.simpleService.addElement("New element");
+  }
+
+  delete(): void {
+    this.simpleService.deleteLastElement();
   }
 
 }

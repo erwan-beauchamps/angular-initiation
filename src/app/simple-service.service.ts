@@ -18,7 +18,9 @@ export class SimpleServiceService {
   }
 
   deleteLastElement(): void {
-    this.elementsList.pop();
+    if(this.elementsList.length > 0){
+      this.elementsList.pop();
+    }
   }
 
 }
