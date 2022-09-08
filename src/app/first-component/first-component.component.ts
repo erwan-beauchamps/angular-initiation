@@ -1,3 +1,4 @@
+import { SimpleServiceService } from './../simple-service.service';
 import { Component, OnInit } from '@angular/core';
 
 export enum SwitchList {
@@ -17,7 +18,7 @@ export class FirstComponentComponent implements OnInit {
   public list: string[] = ["First Element", "Second Element", "Third Element"];
   public switchValue: string = SwitchList.FIRST;
 
-  constructor() { }
+  constructor(private simpleService: SimpleServiceService) { }
 
   ngOnInit(): void {
   }
