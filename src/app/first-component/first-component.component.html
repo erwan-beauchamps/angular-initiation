@@ -4,7 +4,7 @@
 </button>
 <div *ngIf="isShowed;else other_content">
     <div *ngFor="let elementList of list">
-        <p appFirstDirective>{{elementList}}</p>
+        <p appFirstDirective>{{elementList | firstPipe}}</p>
         <mat-divider></mat-divider>
     </div>
 </div>
