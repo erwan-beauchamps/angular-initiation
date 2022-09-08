@@ -5,25 +5,21 @@
     </button>
     <button (click)="add()" mat-raised-button color="primary">Ajouter</button>
     <button (click)="delete()" mat-raised-button color="warn">Supprimer</button>
-    <table class="first-table" *ngIf="isShowed;else other_content">
+    <table class="first-table" *ngIf="isShowed">
         <div *ngFor="let elementList of list">
             <p appFirstDirective>{{elementList | firstPipe}}</p>
             <mat-divider></mat-divider>
         </div>
     </table>
-    <ng-template #other_content>
-        <p>Click to show the list</p>
-    </ng-template>
-    <div>
-        <button (click)="changeSwitchValue(switchList.FIRST)">FIRST</button>
-        <button (click)="changeSwitchValue(switchList.SECOND)">SECOND</button>
-        <button (click)="changeSwitchValue('third')">THIRD</button>
-    </div>
-    <div [ngSwitch]="switchValue">
-        <p *ngSwitchCase="switchList.FIRST">The switchValue must be 'first'</p>
-        <p *ngSwitchCase="switchList.SECOND">The switchValue must be 'second'</p>
-        <p *ngSwitchDefault>The switchValue must be something else</p>
-    </div>
+    <table class="first-table" *ngIf="isShowed">
+        <div *ngFor="let message of messageList">
+            <p appFirstDirective>{{message}} <span (click)="deleteMessage(message)">X</span></p>
+            <mat-divider></mat-divider>
+        </div>
+    </table>
+</div>
+<div class="main-content">
+    <app-message-box *ngFor="let buttonName of buttonList" [name]="buttonName"></app-message-box>
 </div>
 
 
