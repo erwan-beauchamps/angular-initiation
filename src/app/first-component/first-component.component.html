@@ -1,10 +1,11 @@
-<button (click)="display()">
+<button (click)="display()" mat-raised-button color="primary">
     <div *ngIf="isShowed">Hide list</div>
     <div *ngIf="!isShowed">Show list</div>
 </button>
 <div *ngIf="isShowed;else other_content">
     <div *ngFor="let elementList of list">
         <p appFirstDirective>{{elementList}}</p>
+        <mat-divider></mat-divider>
     </div>
 </div>
 <ng-template #other_content>
