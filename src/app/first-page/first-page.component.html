@@ -1,1 +1,6 @@
-<p>first-page works!</p>
+<mat-card class="message" *ngFor="let message of listMessages">
+    <p>{{message.author}}: <span>{{message.message}}</span></p>
+</mat-card>
+<mat-card class="message" *ngFor="let message of listMessageObservable$ | async">
+    <p>(asyncPipe) {{message.author}}: <span>{{message.message}}</span></p>
+</mat-card>
