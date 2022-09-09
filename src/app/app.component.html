@@ -1,1 +1,40 @@
-<app-first-component></app-first-component>
+
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <mat-list role="list">
+            <mat-list-item role="listitem">
+                <button (click)="goTo('')" mat-raised-button>
+                    Mes premiers TPs Angular
+                </button>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <button (click)="goTo('/first-page')" mat-raised-button>
+                    Ma première page Angular
+                </button>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <button (click)="goTo('/second-page')" mat-raised-button>
+                    Ma deuxième page Angular
+                </button>
+            </mat-list-item>
+        </mat-list>
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <mat-toolbar>
+        <button mat-icon-button (click)="drawer.toggle()" class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>Ma première Single Page Application</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>share</mat-icon>
+        </button>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </div>
+  
+  </mat-drawer-container>

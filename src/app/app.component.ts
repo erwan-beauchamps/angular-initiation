@@ -1,3 +1,4 @@
+import { Router, RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   title = 'first-application';
+
+  constructor(private router: Router) { }
+
+  goTo(page: string): void {
+    this.router.navigate([page]);
+  }
 }
