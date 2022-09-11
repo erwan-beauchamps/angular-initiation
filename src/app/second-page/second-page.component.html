@@ -1,1 +1,20 @@
-<p>second-page works!</p>
+<form class="first-form" [formGroup]="messageForm" (ngSubmit)="submitForm()">
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Author</mat-label>
+            <input formControlName="author" matInput placeholder="Erwan">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Message</mat-label>
+            <input formControlName="message" matInput placeholder="Exemple de message">
+            <mat-icon matSuffix>mail</mat-icon>
+            <mat-hint>Le message de l'auteur</mat-hint>
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-flat-button color="primary">Submit</button>
+    </div>
+</form>
