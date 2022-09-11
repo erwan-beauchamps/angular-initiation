@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Message } from '../first-page/first-page.component';
+import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+
+export function firstValidator(input: FormControl) {
+  return (input.value.length > 5) ? null : {firstValidator: true};
+}
 
 @Component({
   selector: 'app-second-page',
@@ -15,7 +18,7 @@ export class SecondPageComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder, private _httpClient: HttpClient) {
     this.messageForm = this._formBuilder.group({
-      author: new FormControl('', [Validators.required]),
+      author: new FormControl('', [Validators.required, firstValidator]),
       message: new FormControl('', [Validators.required]),
     });
   }
@@ -26,7 +29,6 @@ export class SecondPageComponent implements OnInit {
   submitForm(): void {
     if (this.messageForm.valid) {
       this._httpClient.post(this.url, this.messageForm.value).subscribe((result) => {
-        console.log("this.messageForm.value", this.messageForm.value);
         console.log("result", result);
       });
     }
