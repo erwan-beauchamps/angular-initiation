@@ -1,11 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-
-export interface Message {
-  author: string;
-  message: string;
-}
+import { Message } from '../services/firebase-api.service';
+import { MessagesServerService } from '../services/messages-server.service';
 
 @Component({
   selector: 'app-first-page',
@@ -14,20 +10,19 @@ export interface Message {
 })
 export class FirstPageComponent implements OnInit {
 
-  private url: string = 'https://angular-initiation-default-rtdb.firebaseio.com/messages.json';
   public listMessages: Message[] = [{author: "test", message: "test"}];
   public listMessageObservable$: Observable<Message[]>;
 
-  constructor(private _httpClient: HttpClient) {
+  constructor(private _messagesServerService: MessagesServerService) {
     this.listMessageObservable$ = new Observable<Message[]>();
   }
 
   ngOnInit(): void {
-    this._httpClient.get<Message[]>(this.url).subscribe((result: Message[]) => {
+    this.listMessageObservable$ = this._messagesServerService.getMessages()
+    this.listMessageObservable$.subscribe((result: Message[]) => {
+      console.log()
       this.listMessages = result;
-      console.log("this.listMessages", this.listMessages);
-    });
-    this.listMessageObservable$ = this._httpClient.get<Message[]>(this.url)
+    });;
   }
 
 }
