@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { MessagesServerService } from '../services/messages-server.service';
 
 export function firstValidator(input: FormControl) {
   return (input.value.length > 5) ? null : {firstValidator: true};
@@ -16,7 +16,7 @@ export class SecondPageComponent implements OnInit {
   messageForm: FormGroup;
   private url: string = 'https://angular-initiation-default-rtdb.firebaseio.com/messages.json';
 
-  constructor(private _formBuilder: FormBuilder, private _httpClient: HttpClient) {
+  constructor(private _formBuilder: FormBuilder, private _messagesServerService: MessagesServerService) {
     this.messageForm = this._formBuilder.group({
       author: new FormControl('', [Validators.required, firstValidator]),
       message: new FormControl('', [Validators.required]),
@@ -28,9 +28,7 @@ export class SecondPageComponent implements OnInit {
 
   submitForm(): void {
     if (this.messageForm.valid) {
-      this._httpClient.post(this.url, this.messageForm.value).subscribe((result) => {
-        console.log("result", result);
-      });
+      this._messagesServerService.postMessages(this.messageForm.value);
     }
   }
 

@@ -19,4 +19,8 @@ export class MessagesServerService {
     return this._messageApiService.getApiMessages();
   }
 
+  postMessages(newMessage: Message): void {
+    this._messageApiService.postApiMessages(newMessage).subscribe((result) => {});
+  }
+
 }

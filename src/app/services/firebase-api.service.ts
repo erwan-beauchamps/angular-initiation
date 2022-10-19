@@ -20,4 +20,8 @@ export class FirebaseApiService {
     return this._httpClient.get<Message[]>(this.url);
   }
 
+  postApiMessages(newMessage: Message): Observable<any> {
+    return this._httpClient.post(this.url, newMessage);
+  }
+
 }
