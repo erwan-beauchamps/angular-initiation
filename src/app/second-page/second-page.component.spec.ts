@@ -1,3 +1,5 @@
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SecondPageComponent } from './second-page.component';
@@ -8,7 +10,8 @@ describe('SecondPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SecondPageComponent ]
+      declarations: [ SecondPageComponent ],
+      imports: [FormsModule, ReactiveFormsModule, HttpClientModule]
     })
     .compileComponents();
 
