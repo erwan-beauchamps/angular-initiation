@@ -1,9 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
+import { SimpleServiceService } from '../services/simple-service.service';
 import { FirstComponentComponent } from './first-component.component';
 
 describe('FirstComponentComponent', () => {
   let component: FirstComponentComponent;
   let fixture: ComponentFixture<FirstComponentComponent>;
+  let simpleServiceService: SimpleServiceService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -15,6 +17,8 @@ describe('FirstComponentComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
+  beforeEach(inject([SimpleServiceService], (_simpleServiceService: SimpleServiceService) => simpleServiceService = _simpleServiceService));
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -37,4 +41,20 @@ describe('FirstComponentComponent', () => {
     component.display();
     expect(component.isShowed).toBeTrue();
   });
+
+  it('messageList add() should work', fakeAsync(() => {
+    let size1 = simpleServiceService.getList().length;
+    component.add();
+    component.add();
+    component.add();
+    let size2 = simpleServiceService.getList().length;
+    expect(size2).toEqual(size1+3);
+  }));
+
+  it('messageList delete() should work', fakeAsync(() => {
+    let size1 = simpleServiceService.getList().length;
+    component.delete();
+    let size2 = simpleServiceService.getList().length;
+    expect(size2).toEqual(size1-1);
+  }));
 });
