@@ -1,8 +1,9 @@
 import { MessagesServerService } from './../services/messages-server.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { async, ComponentFixture, fakeAsync, inject, TestBed, tick, waitForAsync } from '@angular/core/testing';
-
+import { async, ComponentFixture, fakeAsync, flush, inject, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { of } from 'rxjs';
 import { FirstPageComponent } from './first-page.component';
+import { Message } from '../services/firebase-api.service';
 
 describe('FirstPageComponent', () => {
   let component: FirstPageComponent;
@@ -34,6 +35,32 @@ describe('FirstPageComponent', () => {
       messages = data;
       expect(messages).not.toBeNull();
     });
+  }));
+
+  it('messages spyOn', waitForAsync(() => {
+
+    let listMessages!: Message[];
+    
+    spyOn(messagesServerService, 'getMessages').and.returnValue(of([
+      {
+        author: 'unitTest',
+        message: 'unitMessage'
+      },
+      {
+        author: 'unitTest2',
+        message: 'unitMessage2'
+      },
+      {
+        author: 'unitTest3',
+        message: 'unitMessage3'
+      }
+    ]));
+
+    messagesServerService.getMessages().subscribe(result => {
+      listMessages = result;
+      expect(listMessages.length).toBe(3);
+    });
+
   }));
 
 });

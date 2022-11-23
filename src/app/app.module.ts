@@ -42,6 +42,7 @@ import {MatInputModule} from '@angular/material/input';
     HttpClientModule,
     MatCardModule,
     MatFormFieldModule,
+    MatIconModule,
     FormsModule,
     ReactiveFormsModule,
     MatInputModule
