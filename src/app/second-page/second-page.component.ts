@@ -14,6 +14,12 @@ export enum BoxMessageError {
   SAME_AUTHOR = 'Auteur et message identique'
 }
 
+export enum ControlEnum {
+  AUTHOR = 'author',
+  MESSAGE = 'message',
+  AUTHOR_ERROR = 'authorError'
+}
+
 @Component({
   selector: 'app-second-page',
   templateUrl: './second-page.component.html',
@@ -24,7 +30,7 @@ export class SecondPageComponent implements OnInit {
   messageForm: FormGroup;
   private url: string = 'https://angular-initiation-default-rtdb.firebaseio.com/messages.json';
   authorError = '';
-  localBoxMessageError = BoxMessageError;
+  localControlEnum = ControlEnum;
 
   constructor(private _formBuilder: FormBuilder, private _messagesServerService: MessagesServerService) {
     this.messageForm = this._formBuilder.group({
@@ -39,13 +45,11 @@ export class SecondPageComponent implements OnInit {
 
   submitForm(): void {
     if (this.messageForm.valid) {
-      console.log('value => ', this.messageForm.value);
     }
   }
 
   initValueChange() {
     this.messageForm.valueChanges.subscribe((values: BoxMessage) => {
-      console.log('valueChanges =>', values);
       let isInvalid = true;
       if (values.author === BoxMessageError.NOT_FOUND) {
         this.authorError = BoxMessageError.NOT_FOUND;
@@ -60,13 +64,12 @@ export class SecondPageComponent implements OnInit {
         isInvalid = false;
       }
       if (this.authorError) {
-        const errors = this.messageForm.controls['author'].errors || {};
-        this.messageForm.controls['author'].setErrors({
-          'authorError': null,
+        const errors = this.messageForm.controls[ControlEnum.AUTHOR].errors || {};
+        this.messageForm.controls[ControlEnum.AUTHOR].setErrors({
+          AUTHOR_ERROR: null,
           ...errors
         })
       }
-      console.log('this.errorForm =>', this.authorError);
     });
   }
 

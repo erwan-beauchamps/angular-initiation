@@ -2,7 +2,9 @@
     <div>
         <mat-form-field appearance="outline">
             <mat-label>Author</mat-label>
-            <input formControlName="author" matInput placeholder="Erwan">
+            <input 
+                [formControlName]="localControlEnum.AUTHOR" 
+                matInput>
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             <mat-error *ngIf="authorError">{{authorError}}</mat-error>
         </mat-form-field>
@@ -10,7 +12,9 @@
     <div>
         <mat-form-field appearance="outline">
             <mat-label>Message</mat-label>
-            <input formControlName="message" matInput placeholder="Exemple de message">
+            <input 
+                [formControlName]="localControlEnum.MESSAGE" 
+                matInput>
             <mat-icon matSuffix>mail</mat-icon>
         </mat-form-field>
     </div>
