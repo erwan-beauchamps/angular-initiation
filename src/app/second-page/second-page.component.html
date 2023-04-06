@@ -4,6 +4,7 @@
             <mat-label>Author</mat-label>
             <input formControlName="author" matInput placeholder="Erwan">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-error *ngIf="authorError">{{authorError}}</mat-error>
         </mat-form-field>
     </div>
     <div>
@@ -11,7 +12,6 @@
             <mat-label>Message</mat-label>
             <input formControlName="message" matInput placeholder="Exemple de message">
             <mat-icon matSuffix>mail</mat-icon>
-            <mat-hint>Le message de l'auteur</mat-hint>
         </mat-form-field>
     </div>
     <div>

@@ -1,25 +1,5 @@
 <div class="main-content">
-    <button (click)="display()" mat-raised-button color="basic">
-        <div *ngIf="isShowed">Hide list</div>
-        <div *ngIf="!isShowed">Show list</div>
-    </button>
-    <button (click)="add()" mat-raised-button color="primary">Ajouter</button>
-    <button (click)="delete()" mat-raised-button color="warn">Supprimer</button>
-    <table class="first-table" *ngIf="isShowed">
-        <div *ngFor="let elementList of list">
-            <p appFirstDirective>{{elementList | firstPipe}}</p>
-            <mat-divider></mat-divider>
-        </div>
-    </table>
-    <table class="first-table" *ngIf="isShowed">
-        <div *ngFor="let message of messageList">
-            <p appFirstDirective>{{message}} <span (click)="deleteMessage(message)">X</span></p>
-            <mat-divider></mat-divider>
-        </div>
-    </table>
-</div>
-<div class="main-content">
-    <app-message-box *ngFor="let buttonName of buttonList" [name]="buttonName"></app-message-box>
+    Voici notre first-component
 </div>
 
 
