@@ -11,14 +11,4 @@
 <ng-template #other_content>
     <p>Click to show the list</p>
 </ng-template>
-<div>
-    <button (click)="changeSwitchValue(switchList.FIRST)">FIRST</button>
-    <button (click)="changeSwitchValue(switchList.SECOND)">SECOND</button>
-    <button (click)="changeSwitchValue('third')">THIRD</button>
-</div>
-<div [ngSwitch]="switchValue">
-    <p *ngSwitchCase="switchList.FIRST">The switchValue must be 'first'</p>
-    <p *ngSwitchCase="switchList.SECOND">The switchValue must be 'second'</p>
-    <p *ngSwitchDefault>The switchValue must be something else</p>
-</div>
 
