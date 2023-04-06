@@ -64,11 +64,7 @@ export class SecondPageComponent implements OnInit {
         isInvalid = false;
       }
       if (this.authorError) {
-        const errors = this.messageForm.controls[ControlEnum.AUTHOR].errors || {};
-        this.messageForm.controls[ControlEnum.AUTHOR].setErrors({
-          AUTHOR_ERROR: null,
-          ...errors
-        })
+        this.messageForm.controls[ControlEnum.AUTHOR].setErrors({AUTHOR_ERROR: null})
       }
     });
   }
