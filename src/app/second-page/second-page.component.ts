@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { MessagesServerService } from '../services/messages-server.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 export interface BoxMessage {
   author: string;
@@ -32,7 +31,7 @@ export class SecondPageComponent implements OnInit {
   authorError = '';
   localControlEnum = ControlEnum;
 
-  constructor(private _formBuilder: FormBuilder, private _messagesServerService: MessagesServerService) {
+  constructor(private _formBuilder: FormBuilder) {
     this.messageForm = this._formBuilder.group({
       author: new FormControl('', [Validators.required]),
       message: new FormControl('', [Validators.required]),
