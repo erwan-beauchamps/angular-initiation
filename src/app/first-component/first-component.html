@@ -1,0 +1,36 @@
+<button (click)="display()" mat-raised-button color="primary">
+  @if (isShowed()) {
+    Hide list
+  } @else {
+    Show list
+  }
+</button>
+
+@if (isShowed()) {
+  <div>
+    @for (element of list; track $index) {
+      <p appFirstDirective>{{ element | firstPipe }}</p>
+      <mat-divider />
+    }
+  </div>
+} @else {
+  <p>Click to show the list</p>
+}
+
+<div>
+  <button (click)="changeSwitchValue(switchList.FIRST)">FIRST</button>
+  <button (click)="changeSwitchValue(switchList.SECOND)">SECOND</button>
+  <button (click)="changeSwitchValue('third')">THIRD</button>
+</div>
+
+@switch (switchValue()) {
+  @case (switchList.FIRST) {
+    <p>The switchValue must be 'first'</p>
+  }
+  @case (switchList.SECOND) {
+    <p>The switchValue must be 'second'</p>
+  }
+  @default {
+    <p>The switchValue must be something else</p>
+  }
+}
