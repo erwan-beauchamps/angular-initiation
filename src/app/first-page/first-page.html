@@ -1,0 +1,10 @@
+@for (message of listMessages(); track $index) {
+  <mat-card class="message">
+    <p>{{ message.author }}: <span>{{ message.message }}</span></p>
+  </mat-card>
+}
+@for (message of listMessages$ | async; track $index) {
+  <mat-card class="message">
+    <p>(asyncPipe) {{ message.author }}: <span>{{ message.message }}</span></p>
+  </mat-card>
+}
